@@ -1,0 +1,56 @@
+﻿@using Inventory.Repository.Paging;
+@using Inventory.ViewModel.Bill;
+@model PaginatedList<BillTypeListViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row" >
+    <div class="col-6">
+        Add New Bill Type
+        <a asp-action="Create" class="btn btn-primary">Add</a>
+    </div>
+    <div class="col-6">Search Here.....</div>
+    <div class="row">
+        <form asp-action="">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Bill-Type Id
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BillTypeId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem =>item.BillTypeName)
+                            </td>
+
+                            <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <a asp-route-id="@item.BillTypeId" asp-action="Edit" class="btn btn-primary">Edit</a>
+@*                                 <a asp-action="" class="btn btn-danger">Details</a>
+ *@                                <a asp-route-id="@item.BillTypeId" asp-action="Delete" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
